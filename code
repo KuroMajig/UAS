@@ -1,1 +1,58 @@
 
+makanan = {
+    "1": ["Nasi Goreng", 5000],
+    "2": ["Mie Ayam", 7000],
+    "3": ["Bakso", 8000],
+}
+
+minuman = {
+    "4": ["Es Teh", 4000],
+    "5": ["Es Jeruk", 5000],
+    "6": ["Kopi", 6000],
+}
+
+
+def tampilkan_daftar(menu):
+    print("\nDaftar Makanan/Minuman:")
+    for item in menu:
+        print(f"{item}: {menu[item][0]} - Rp.{menu[item][1]}")
+
+
+def input_pilihan(menu):
+    print("\nSilakan pilih makanan/minuman yang akan anda pesan:")
+    pilihan = input()
+    while pilihan not in menu:
+        print("Pilihan tidak valid, silakan pilih lagi.")
+        pilihan = input()
+    return pilihan
+
+
+def hitung_total(pilihan, menu):
+    total = menu[pilihan][1]
+    return total
+
+
+def tampilkan_struk(pilihan, menu):
+    print("\nStruk Pembelian:")
+    print(f"Makanan/Minuman: {menu[pilihan][0]}")
+    print(f"Harga: Rp.{menu[pilihan][1]}")
+    print("Terima kasih telah berbelanja!")
+
+
+while True:
+    tampilkan_daftar(makanan)
+    tampilkan_daftar(minuman)
+    
+    pilihan_makanan = input_pilihan(makanan)
+    pilihan_minuman = input_pilihan(minuman)
+    
+    total_harga = hitung_total(pilihan_makanan, makanan) + hitung_total(pilihan_minuman, minuman)
+    
+    tampilkan_struk(pilihan_makanan, makanan)
+    tampilkan_struk(pilihan_minuman, minuman)
+    
+    print(f"Total harga: Rp.{total_harga}")
+    
+    lanjutkan = input("\nApakah anda ingin melanjutkan belanja? (y/n): ")
+    if lanjutkan.lower() != "y":
+        break
